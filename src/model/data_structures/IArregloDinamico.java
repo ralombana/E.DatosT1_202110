@@ -7,6 +7,7 @@ public interface IArregloDinamico {
 	 * @return
 	 */
 	int darCapacidad( );
+	
 
 	/**
 	 * Retornar el numero de elementos presentes en el arreglo
