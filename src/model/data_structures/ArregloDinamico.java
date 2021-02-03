@@ -93,6 +93,7 @@ public class ArregloDinamico implements IArregloDinamico {
 				encontro = true;
 				retorno = elementos[i];
 				elementos[i] = null;
+				tamanoAct--;
 				}
 			}
 			
