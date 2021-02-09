@@ -9,7 +9,7 @@ package model.data_structures;
  * @param <T>
  *
  */
-public class ArregloDinamico<T> implements IArregloDinamico<T> {
+public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> {
 	/**
 	 * Capacidad maxima del arreglo
 	 */
@@ -29,7 +29,7 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 	 */
 	public ArregloDinamico( int max )
 	{
-		elementos = (T[]) new Object[max];
+		elementos = (T[]) new Comparable[max];
 		tamanoMax = max;
 		tamanoAct = 0;
 	}
@@ -40,7 +40,7 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 		{  // caso de arreglo lleno (aumentar tamaNo)
 			tamanoMax = 2 * tamanoMax;
 			T [ ] copia = elementos;
-			elementos = (T[]) new Object[tamanoMax];
+			elementos = (T[]) new Comparable[tamanoMax];
 			for ( int i = 0; i < tamanoAct; i++)
 			{
 				elementos[i] = copia[i];
@@ -74,7 +74,7 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 
 		for (int i = 0; i < tamanoAct && !encontro ; i++) {
 
-			if (elementos[i].equals(dato)) {
+			if (elementos[i].compareTo(dato) == 0) {
 				encontro = true;
 				solucion = elementos[i];
 
@@ -90,9 +90,8 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
 		boolean encontro = false;
 		T retorno = null;
-
 		for (int i = 0; i <tamanoAct && !encontro; i++) {
-			if ( elementos[i].equals((dato))) {
+			if ( elementos[i].compareTo(dato) == 0) {
 				encontro = true;
 				retorno = elementos[i];
 				elementos[i] = null;
@@ -132,7 +131,7 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 	{
 		// TODO Auto-generated method stub
 		int end = tamanoAct - 1;
-		T[] arreglo = (T[]) new Object[tamanoAct];
+		T[] arreglo = (T[]) new Comparable[tamanoAct];
 		for(int i = 0; i < elementos.length; i++)
 		{
 			if(elementos[i] != null)

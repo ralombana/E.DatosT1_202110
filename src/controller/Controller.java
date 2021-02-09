@@ -86,7 +86,6 @@ public class Controller {
 					view.printModelo(modelo);
 					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 					break;	
-					
 				case 6: 
 					view.printMessage("--------- \nArreglo sin Invertir: ");
 					view.printModelo(modelo);
@@ -96,7 +95,6 @@ public class Controller {
 					view.printMessage("--------- \nArreglo ya Invertido: ");
 					view.printModelo(modelo);
 					break;
-					
 				case 7: 
 					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 					lector.close();
