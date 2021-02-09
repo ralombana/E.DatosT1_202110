@@ -99,6 +99,30 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 				tamanoAct--;
 			}
 		}
+		
+		int j = 0;
+
+		for(int i = 0; i <elementos.length; i++)
+		{
+			if(elementos[i] == null)
+			{
+				j++;	
+				if(j >= elementos.length)
+				{
+					tamanoAct = i+1;
+					elementos[elementos.length - 1] = null;
+					break;
+				}
+			}			
+			elementos[i] = elementos[j];
+			j++;
+			if(j >= elementos.length)
+			{
+				tamanoAct = i+1;
+				elementos[elementos.length - 1] = null;
+				break;
+			}
+		}
 
 		return retorno;
 	}
@@ -107,14 +131,18 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 	public void invertir() 
 	{
 		// TODO Auto-generated method stub
-		int end = elementos.length - 1;
-		T[] arreglo = (T[]) new Object[elementos.length];
+		int end = tamanoAct - 1;
+		T[] arreglo = (T[]) new Object[tamanoAct];
 		for(int i = 0; i < elementos.length; i++)
 		{
-			arreglo[end] = elementos[i];
-			end--;
-		}
+			if(elementos[i] != null)
+			{
+				arreglo[end] = elementos[i];
+				end--;
+			}
+		}		
 		elementos = arreglo;
+		tamanoMax = elementos.length;
 	}
 
 }
