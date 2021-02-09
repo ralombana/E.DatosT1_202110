@@ -11,7 +11,7 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private IArregloDinamico datos;
+	private ArregloDinamico<String> datos;
 	
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
@@ -68,5 +68,9 @@ public class Modelo {
 		return datos.eliminar(dato);
 	}
 
+	public ArregloDinamico<String> darArreglo()
+	{
+		return datos;
+	}
 
 }

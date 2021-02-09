@@ -43,5 +43,12 @@ public interface IArregloDinamico<T> {
 	 * @return dato eliminado
 	 */
 	T eliminar( T dato );
+	
+	
+	/**
+	 * Invierte los datos del arreglo
+	 * @return los datos del arreglos han sido invertidos
+	 */
+	void invertir();
 
 }

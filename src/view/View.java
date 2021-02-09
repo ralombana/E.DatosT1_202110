@@ -1,5 +1,6 @@
 package view;
 
+import model.data_structures.ArregloDinamico;
 import model.logic.Modelo;
 
 public class View 
@@ -31,5 +32,10 @@ public class View
 		public void printModelo(Modelo modelo)
 		{
 			// TODO implementar
+			ArregloDinamico<String> arr = modelo.darArreglo();
+			for(int i = 0; i < modelo.darTamano(); i++)
+			{
+				System.out.println(arr.darElemento(i));
+			}
 		}
 }

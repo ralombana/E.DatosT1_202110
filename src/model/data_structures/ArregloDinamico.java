@@ -103,4 +103,18 @@ public class ArregloDinamico<T> implements IArregloDinamico<T> {
 		return retorno;
 	}
 
+	@Override
+	public void invertir() 
+	{
+		// TODO Auto-generated method stub
+		int end = elementos.length - 1;
+		T[] arreglo = (T[]) new Object[elementos.length];
+		for(int i = 0; i < elementos.length; i++)
+		{
+			arreglo[end] = elementos[i];
+			end--;
+		}
+		elementos = arreglo;
+	}
+
 }
