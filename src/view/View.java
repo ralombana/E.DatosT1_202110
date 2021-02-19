@@ -27,13 +27,4 @@ public class View
 			System.out.println(mensaje);
 		}		
 		
-		public void printModelo(Modelo modelo)
-		{
-			// TODO implementar
-			ListaEncadenada<String> arr = modelo.darLista();
-			for(int i = 0; i < modelo.darTamano(); i++)
-			{
-				System.out.println(arr.getElement(i));
-			}
-		}
 }

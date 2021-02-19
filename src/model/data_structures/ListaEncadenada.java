@@ -5,14 +5,11 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	
 	private Nodo inicio;
 	
-	private Nodo end;
-	
 	private int elementos;
 	
 	public ListaEncadenada() 
 	{
 		inicio = null;
-		end = null;
 		elementos = 0;
 	}
 	
@@ -43,6 +40,10 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	public void addFirst(T dato) 
 	{
 		Nodo nuevo = new Nodo(inicio, dato, null);
+		if(inicio != null)
+		{
+			inicio.setPasado(nuevo);
+		}
 		inicio = nuevo;
 		elementos++;
 		
@@ -51,12 +52,13 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	@Override
 	public void addLast(T dato) 
 	{
-		Nodo n = new Nodo(null, dato, end);
-		if(end != null)
-		{			
-			end.setSiguiente(n);
+		Nodo ans = inicio;
+		for(int i = 0; i < elementos; i++)
+		{
+			ans = ans.getSiguiente();
 		}
-		end = n;
+		Nodo n = new Nodo(null, dato, ans);
+		ans.setSiguiente(n);
 	}
 
 	@Override
@@ -77,11 +79,14 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	@Override
 	public T removeLast() 
 	{
-		Nodo temp = end;
-		end = temp.getPasado();
-		end.setSiguiente(null);
-		temp.setPasado(null);
-		return (T) temp.getValor();
+		Nodo ans = inicio;
+		for(int i = 0; i < elementos; i++)
+		{
+			ans = ans.getSiguiente();
+		}
+		ans.getPasado().setSiguiente(null);
+		ans.setPasado(null);
+		return (T) ans.getValor();
 	}
 
 	@Override
@@ -127,7 +132,12 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	@Override
 	public T lastElement() {
 		// TODO Auto-generated method stub
-		return (T) end.getValor();
+		Nodo ans = inicio;
+		for(int i = 0; i < elementos-1; i++)
+		{
+			ans = ans.getSiguiente();
+		}
+		return (T) ans.getValor();
 	}
 
 	@Override
