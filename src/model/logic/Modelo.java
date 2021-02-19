@@ -2,6 +2,7 @@ package model.logic;
 
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
+import model.data_structures.ListaEncadenada;
 
 /**
  * Definicion del modelo del mundo
@@ -13,12 +14,15 @@ public class Modelo {
 	 */
 	private ArregloDinamico<String> datos;
 	
+	private ListaEncadenada<String> lista;
+	
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo()
 	{
 		datos = new ArregloDinamico(7);
+		lista = new ListaEncadenada();
 	}
 	
 	/**
@@ -28,6 +32,7 @@ public class Modelo {
 	public Modelo(int capacidad)
 	{
 		datos = new ArregloDinamico(capacidad);
+		lista = new ListaEncadenada();
 	}
 	
 	/**
@@ -36,7 +41,7 @@ public class Modelo {
 	 */
 	public int darTamano()
 	{
-		return datos.darTamano();
+		return lista.darTamano();
 	}
 
 	/**
@@ -46,6 +51,7 @@ public class Modelo {
 	public void agregar(String dato)
 	{	
 		datos.agregar(dato);
+		lista.agregar(dato);
 	}
 	
 	/**
@@ -55,7 +61,7 @@ public class Modelo {
 	 */
 	public String buscar(String dato)
 	{
-		return datos.buscar(dato);
+		return lista.buscar(dato);
 	}
 	
 	/**
@@ -65,12 +71,17 @@ public class Modelo {
 	 */
 	public String eliminar(String dato)
 	{
-		return datos.eliminar(dato);
+		return lista.eliminar(dato);
 	}
 
 	public ArregloDinamico<String> darArreglo()
 	{
 		return datos;
+	}
+	
+	public ListaEncadenada<String> darLista()
+	{
+		return lista;
 	}
 
 }
