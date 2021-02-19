@@ -5,22 +5,25 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	
 	private Nodo inicio;
 	
+	private Nodo end;
+	
 	private int elementos;
 	
 	public ListaEncadenada() 
 	{
 		inicio = null;
+		end = null;
 		elementos = 0;
 	}
 	
 	@Override
-	public int darTamano() 
+	public int size() 
 	{
 		return elementos;
 	}
 
 	@Override
-	public T darElemento(int i) {
+	public T getElement(int i) {
 		Nodo ans = inicio;
 		for(int j = 0; j <= i; j ++)
 		{
@@ -37,70 +40,167 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	}
 
 	@Override
-	public void agregar(T dato) 
-	{		
-		Nodo nuevo = new Nodo(inicio, dato);
+	public void addFirst(T dato) 
+	{
+		Nodo nuevo = new Nodo(inicio, dato, null);
 		inicio = nuevo;
 		elementos++;
+		
 	}
 
 	@Override
-	public T buscar(T dato) 
-	{	
-		Nodo ans = inicio;
-		for(int i = 0; i < elementos; i++)
-		{
-			if(dato.compareTo((T) ans.getValor()) == 0)
-			{
-				return (T) ans.getValor();
-			}
-			else
-			{
-				ans = ans.getSiguiente();
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public T eliminar(T dato) 
+	public void addLast(T dato) 
 	{
-		if(inicio.getValor().compareTo(dato) == 0)
+		Nodo n = new Nodo(null, dato, end);
+		if(end != null)
+		{			
+			end.setSiguiente(n);
+		}
+		end = n;
+	}
+
+	@Override
+	public void insertElement(T element, int pos) 
+	{
+		
+	}
+
+	@Override
+	public T removeFirst() {
+		elementos--;
+		Nodo temp = inicio;
+		inicio = temp.getSiguiente();
+		temp.setSiguiente(null);
+		return (T) temp.getValor();
+	}
+
+	@Override
+	public T removeLast() 
+	{
+		Nodo temp = end;
+		end = temp.getPasado();
+		end.setSiguiente(null);
+		temp.setPasado(null);
+		return (T) temp.getValor();
+	}
+
+	@Override
+	public T deleteElement(int pos) 
+	{
+		if(pos == 0)
 		{
-			elementos--;
-			Nodo temp = inicio;
-			inicio = temp.getSiguiente();
-			temp.setSiguiente(null);
-			return (T) temp.getValor();
+			return removeFirst();
 		}
 		Nodo ans = inicio;
-		Nodo ant = null;
 		for(int i = 0; i < elementos; i++)
 		{
-			if(dato.compareTo((T) ans.getValor()) == 0)
+			if(i == pos)
 			{
 				elementos--;
 				if(ans.getSiguiente() != null)
 				{
 					Nodo temp = ans;
-					ant.setSiguiente(temp.getSiguiente());
+					temp.getPasado().setSiguiente(temp.getSiguiente());
 					temp.setSiguiente(null);
-					
+					temp.getSiguiente().setPasado(temp.getPasado());
+					temp.setPasado(null);			
 					return (T) temp.getValor(); 
 				}
 				else
 				{
-					ant.setSiguiente(null);
-					return (T) ans.getValor();
+					return removeLast();
 				}
 			}
 			else
 			{
-				ant = ans;
 				ans = ans.getSiguiente();
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public T firstElement() {
+		return (T) inicio.getValor();
+	}
+
+	@Override
+	public T lastElement() {
+		// TODO Auto-generated method stub
+		return (T) end.getValor();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if(elementos == 0)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public int isPresent(T element) 
+	{
+		Nodo ans = inicio;
+		for(int i = 0; i < elementos; i++)
+		{
+			if(element.compareTo((T) ans.getValor()) == 0)
+			{
+				return i;
+			}
+			else
+			{
+				ans = ans.getSiguiente();
+			}
+		}
+		return -1;
+	}
+
+	@Override
+	public void exchange(int pos1, int pos2) 
+	{
+		if(pos1 >= elementos || pos2 >= elementos || pos1 == pos2)
+		{
+			return;
+		}
+		
+		Nodo n1 = null;
+		Nodo n2 = null;
+		Nodo ans = inicio;
+		for(int i = 0; i < elementos; i++)
+		{
+			if(i == pos1)
+			{
+				n1 = ans;
+			}
+			else if(i == pos2)
+			{
+				n2 = ans;
+			}
+			if(n1 != null && n2 != null)
+				break;
+			ans = ans.getSiguiente();
+		}
+		
+		Nodo temp = n2;
+		n2.setSiguiente(n1.getSiguiente());
+		n2.setPasado(n1.getPasado());
+		n1.setSiguiente(temp.getSiguiente());
+		n1.setPasado(temp.getPasado());
+	}
+
+	@Override
+	public void changeInfo(int pos, T elem) 
+	{
+		Nodo ans = inicio;
+		for(int i = 0; i < elementos; i++)
+		{
+			if(i == pos)
+			{
+				ans.setValor(elem);
+			}
+			ans = ans.getSiguiente();
+		}
 	}
 
 }

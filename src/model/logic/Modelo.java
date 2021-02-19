@@ -41,38 +41,9 @@ public class Modelo {
 	 */
 	public int darTamano()
 	{
-		return lista.darTamano();
-	}
-
-	/**
-	 * Requerimiento de agregar dato
-	 * @param dato
-	 */
-	public void agregar(String dato)
-	{	
-		datos.agregar(dato);
-		lista.agregar(dato);
+		return lista.size();
 	}
 	
-	/**
-	 * Requerimiento buscar dato
-	 * @param dato Dato a buscar
-	 * @return dato encontrado
-	 */
-	public String buscar(String dato)
-	{
-		return lista.buscar(dato);
-	}
-	
-	/**
-	 * Requerimiento eliminar dato
-	 * @param dato Dato a eliminar
-	 * @return dato eliminado
-	 */
-	public String eliminar(String dato)
-	{
-		return lista.eliminar(dato);
-	}
 
 	public ArregloDinamico<String> darArreglo()
 	{

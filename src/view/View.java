@@ -16,12 +16,8 @@ public class View
 	    
 		public void printMenu()
 		{
-			System.out.println("1. Crear Arreglo Dinamico de Strings");
-			System.out.println("2. Agregar String");
-			System.out.println("3. Buscar String");
-			System.out.println("4. Eliminar String");
-			System.out.println("5. Imprimir el Arreglo");
-			System.out.println("6. Invertir el Arreglo");
+			System.out.println("1. Cargar a un arreglo dinámico");
+			System.out.println("2. Cargar a una lista encadenada");
 			System.out.println("7. Exit");
 			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
 		}
@@ -37,7 +33,7 @@ public class View
 			ListaEncadenada<String> arr = modelo.darLista();
 			for(int i = 0; i < modelo.darTamano(); i++)
 			{
-				System.out.println(arr.darElemento(i));
+				System.out.println(arr.getElement(i));
 			}
 		}
 }
