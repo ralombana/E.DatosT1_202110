@@ -1,7 +1,20 @@
 package model.logic;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
+import model.data_structures.ListaEncadenada;
+import model.data_structures.YoutubeVideo;
 
 /**
  * Definicion del modelo del mundo
@@ -11,66 +24,99 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private ArregloDinamico<String> datos;
+	private ArregloDinamico<YoutubeVideo> datos;
 	
-	/**
-	 * Constructor del modelo del mundo con capacidad predefinida
-	 */
-	public Modelo()
+	private ListaEncadenada<YoutubeVideo> lista;
+	
+	
+	public void cargarArchivosLista()
 	{
-		datos = new ArregloDinamico(7);
+		lista = new ListaEncadenada<YoutubeVideo>();
+		Reader in;
+		try 
+		{
+			in = new FileReader("./data/videos-all.csv");
+			Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+			boolean first = true;
+			for (CSVRecord record : records) 
+			{
+				if(first == false)
+				{
+					String id = record.get(0);
+				    String date = record.get(1);
+				    String title = record.get(2);
+				    String canal = record.get(3);
+				    String vistas = record.get(7);
+				    String likes = record.get(8);
+				    String dislikes = record.get(9);
+				    
+				    int view = Integer.parseInt(vistas);
+				    int like = Integer.parseInt(likes);
+				    int noLike = Integer.parseInt(dislikes);
+				    
+				    Date d = new SimpleDateFormat("YY.dd.MM").parse(date);
+				    YoutubeVideo y = new YoutubeVideo(id, d, title, canal, view, like, noLike);
+				    lista.addFirst(y);
+				}
+				else
+					first = false;
+			}
+		} 
+		catch (IOException | ParseException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	/**
-	 * Constructor del modelo del mundo con capacidad dada
-	 * @param tamano
-	 */
-	public Modelo(int capacidad)
+	public void cargarArchivosArreglo()
 	{
-		datos = new ArregloDinamico(capacidad);
-	}
-	
-	/**
-	 * Servicio de consulta de numero de elementos presentes en el modelo 
-	 * @return numero de elementos presentes en el modelo
-	 */
-	public int darTamano()
-	{
-		return datos.darTamano();
+		datos = new ArregloDinamico<YoutubeVideo>(100);
+		Reader in;
+		try 
+		{
+			in = new FileReader("./data/videos-all.csv");
+			Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+			boolean first = true;
+			for (CSVRecord record : records) 
+			{
+				if(first == false)
+				{
+					String id = record.get(0);
+				    String date = record.get(1);
+				    String title = record.get(2);
+				    String canal = record.get(3);
+				    String vistas = record.get(7);
+				    String likes = record.get(8);
+				    String dislikes = record.get(9);
+				    
+				    int view = Integer.parseInt(vistas);
+				    int like = Integer.parseInt(likes);
+				    int noLike = Integer.parseInt(dislikes);
+				    
+				    Date d = new SimpleDateFormat("YY.dd.MM").parse(date);
+				    YoutubeVideo y = new YoutubeVideo(id, d, title, canal, view, like, noLike);
+				    datos.addLast(y);
+				}
+				else
+					first = false;
+			}
+		} 
+		catch (IOException | ParseException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	/**
-	 * Requerimiento de agregar dato
-	 * @param dato
-	 */
-	public void agregar(String dato)
-	{	
-		datos.agregar(dato);
-	}
-	
-	/**
-	 * Requerimiento buscar dato
-	 * @param dato Dato a buscar
-	 * @return dato encontrado
-	 */
-	public String buscar(String dato)
-	{
-		return datos.buscar(dato);
-	}
-	
-	/**
-	 * Requerimiento eliminar dato
-	 * @param dato Dato a eliminar
-	 * @return dato eliminado
-	 */
-	public String eliminar(String dato)
-	{
-		return datos.eliminar(dato);
-	}
-
-	public ArregloDinamico<String> darArreglo()
+	public ArregloDinamico<YoutubeVideo> darArreglo()
 	{
 		return datos;
+	}
+	
+	public ListaEncadenada<YoutubeVideo> darLista()
+	{
+		return lista;
 	}
 
 }
