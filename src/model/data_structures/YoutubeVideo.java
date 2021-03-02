@@ -1,5 +1,6 @@
 package model.data_structures;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class YoutubeVideo implements Comparable<YoutubeVideo>
@@ -71,5 +72,80 @@ public class YoutubeVideo implements Comparable<YoutubeVideo>
 	public int getDislikes() {
 		return dislikes;
 	}
+	
+	
+	/**
+	 * Comparacion natural de acuerdo a algun atributo con identificacion unica
+	 * @param otro
+	 * @return valor 0 si this y otro son iguales
+	 */
+	public int compareTo1(YoutubeVideo otro) {
+		int valor = 0;
+		if (id.compareTo(otro.getId())==0) {
+			valor = 0;
+		}else if (id.compareTo(otro.getId())== -1) {
+			valor = -1;
+		}else {
+			valor = 1;
+		}
+		
+		return valor;
+	
+	}
+	
+	
+	
+	public static class ComparadorXLikes implements Comparator <YoutubeVideo>{
+		
+		
+		
+		
+		
+		 /** Comparador alterno de acuerdo al número de likes
+         * @return valor 0 si video1 y video2 tiene los mismos likes.
+           valor negativo si video1 tiene menos likes que video2.
+           valor positivo si video1 tiene más likes que video2. */
+
+		 
+		public int compare (YoutubeVideo video1, YoutubeVideo video2) {
+		int compara = 0;
+		
+		if (video1.getLikes() == video2.getLikes()) {
+			compara = 0;
+		}else if (video1.getLikes() > video2.getLikes()) {
+			compara = 1;
+		
+		}else {
+			compara = 1;
+		}
+		
+			return compara;
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
+
+
+

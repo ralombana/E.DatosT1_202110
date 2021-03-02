@@ -5,6 +5,8 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 	
 	private Nodo inicio;
 	
+	
+	
 	private int elementos;
 	
 	public ListaEncadenada() 
@@ -212,5 +214,39 @@ public class ListaEncadenada<T extends Comparable<T>>implements ILista<T> {
 			ans = ans.getSiguiente();
 		}
 	}
+	/**
+	 * Crear una sublista de la lista original (this)
+	 * Los elementos se toman en el mismo orden como aparecen en la lista original
+	 */
+	
+	public ILista<T>subLista (int comienzo, int numElementos){
+		ILista <T> sublist = new ListaEncadenada <T>();
+		Nodo<T> primero = inicio;
+		int contador = 1;
+		
+		while (contador != comienzo ) {
+			
+			contador++;
+			primero = primero.getSiguiente();
+			
+		}
+		
+		int contador1 = 1;
+		
+		while (contador1 <= numElementos && primero!= null) {
+			sublist.addFirst(primero.getValor());
+			primero = primero.getSiguiente();
+			contador1++;
+		}
+		
+		return sublist;
+	}
+		
+		
+		
+		
+		
+	}
+	
 
-}
+

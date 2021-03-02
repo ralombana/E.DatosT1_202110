@@ -32,6 +32,7 @@ public class Controller {
 		boolean fin = false;
 		String dato = "";
 		String respuesta = "";
+		int cantidad = 0;
 
 		while( !fin ){
 			view.printMenu();
@@ -67,6 +68,11 @@ public class Controller {
 			        view.printMessage("Tiempo de la operación: " + (timeElapsed/1000000) + " ms");
 			        
 					break;
+					
+					
+				case 4:
+					modelo
+					
 				case 7: 
 					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 					lector.close();

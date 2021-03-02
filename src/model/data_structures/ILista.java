@@ -34,4 +34,11 @@ public interface ILista <T extends Comparable<T>>
 	void exchange (int pos1, int pos2);
 	
 	void changeInfo (int pos, T elem);
-}
+	
+	public ILista<T>sublista(int numElementos);
+	
+	
+	
+	
+	
+	}

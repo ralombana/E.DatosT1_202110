@@ -186,5 +186,25 @@ public class ArregloDinamico<T extends Comparable<T>> implements ILista<T> {
 			return;
 		elementos[pos] = elem;
 	}
+	
+	public ILista<T> subLista (int comienzo, int numElementos){
+				ILista<T> subList = (ILista<T>) new ArregloDinamico<>(numElementos);
+		
+				int v = comienzo - 1;
+				int i = 0;
+		while (i < numElementos) {
+			subList.addLast(elementos[v + i]);
+			i++;
+			
+			
+		}
+		
+		return subList;
+		
+		
+		
+		
+		
+	}
 
 }
