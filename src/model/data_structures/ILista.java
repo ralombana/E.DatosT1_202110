@@ -30,6 +30,7 @@ public interface ILista <T extends Comparable<T>>
 	boolean isEmpty( );
 	
 	int isPresent (T element);
+	 
 	
 	void exchange (int pos1, int pos2);
 	
