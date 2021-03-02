@@ -71,8 +71,24 @@ public class Controller {
 					
 					
 				case 4:
-					modelo
-					
+				   
+					view.printMessage("--------- \nEscoja algoritmo con el que va a ordenar el arreglo");
+					startTime = System.nanoTime();
+					view.printMessage("Insertion Sort = 1");
+					endTime = System.nanoTime();					 
+			        timeElapsed = endTime - startTime;
+				   view.printMessage("Merge Sort = 2");
+				   view.printMessage("Shell Sort= 3");
+				   view.printMessage("Quick Sort= 4");
+				   int algoritmoEscojido = lector.nextInt();
+				   modelo.ordenarSubList(algoritmoEscojido);
+				   
+				   view.printMessage("tiempo de la operacio: " + (timeElapsed/1000000)+ "ms");
+				   
+				   
+				   
+				   
+				   
 				case 7: 
 					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 					lector.close();

@@ -6,15 +6,19 @@ import java.io.IOException;
 import java.io.Reader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.graalvm.compiler.graph.NodeList.SubList;
 
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
+import model.data_structures.ILista;
 import model.data_structures.ListaEncadenada;
 import model.data_structures.YoutubeVideo;
+import model.utils.Ordenamiento;
 
 /**
  * Definicion del modelo del mundo
@@ -27,6 +31,7 @@ public class Modelo {
 	private ArregloDinamico<YoutubeVideo> datos;
 	
 	private ListaEncadenada<YoutubeVideo> lista;
+	private ILista subList;
 	
 	
 	public void cargarArchivosLista()
@@ -118,5 +123,38 @@ public class Modelo {
 	{
 		return lista;
 	}
+	
+	public void ordenarSubList(int tipoAlgoritmo) 
+	{
+		int option = tipoAlgoritmo;
+		Ordenamiento<YoutubeVideo> ordenador = new Ordenamiento<YoutubeVideo>();
+		Comparator<YoutubeVideo> criterio = new YoutubeVideo.ComparadorXLikes();
+		
+		switch (option) 
+		{
+		case 1:
+			ordenador.ordenarInsercion(subList, criterio, true);
+			System.out.println("Ordenado por inserción");
+			break;
+		case 2:
+			ordenador.ordenarMergeSort(subList, criterio, true);
+			System.out.println("Ordenado por Merge");
+			break;
+		
+		case 3:			
+			ordenador.ordenarShell(subList, criterio, true);
+			System.out.println("Ordenado por Shell");
+			break;
+		case 4:
+			ordenador.ordenarQuick(subList, criterio, true);
+			System.out.println("Ordenado por Quick");
+			break;
+		default:
+			System.out.println("--- Opición invalida ---");
+			break;
+		}
+		
+	}
+	
 
 }

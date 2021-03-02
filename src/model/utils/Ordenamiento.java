@@ -3,6 +3,7 @@ package model.utils;
 import java.util.Comparator;
 
 import model.data_structures.ILista;
+import model.data_structures.YoutubeVideo;
 
 public class Ordenamiento <T extends Comparable <T>> {
 
@@ -42,6 +43,27 @@ public class Ordenamiento <T extends Comparable <T>> {
 
 			
 		}
+
+
+
+	public void ordenarMergeSort(ILista<T> lista, Comparator <T> criterio, boolean ascendente ) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void ordenarShell(ILista<T> lista, Comparator <T> criterio, boolean ascendente ) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void ordenarQuick(ILista<T> lista, Comparator <T> criterio, boolean ascendente ) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 	}
 	
